@@ -1,0 +1,53 @@
+import javax.swing.*;
+import java.awt.*; //abstract window toolkit
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Random;
+
+public class Example1 extends JFrame implements ActionListener {
+
+    JPanel p;
+    Button changeColor;
+    
+      Example1() {
+        p = new JPanel();
+        p.setLayout(null);
+        this.add(p);
+        this.setSize(700,700);
+
+        this.setBackground(Color.gray);
+        changeColor = new Button("Click Me!");
+        p.add(changeColor);
+        changeColor.addActionListener(this);
+
+        int x = getWidth() / 2 - 60;
+        int y = getHeight() / 2 - 100;
+
+        changeColor.setBounds(x, y,100,100);
+        changeColor.setBackground(Color.red);
+        changeColor.setForeground(Color.blue);
+         }
+    public void actionPerformed(ActionEvent a) {
+        repaint();
+    }
+
+    public void paint(Graphics g) {
+    
+        int x = getWidth() / 2 - 60;
+        int y = getHeight() / 2 - 100;
+
+
+        int red = new Random().nextInt(255);
+        int green = new Random().nextInt(255);
+        int blue = new Random().nextInt(255);
+        Color currentColor = new Color(red, green, blue);
+         p.setBackground(currentColor);
+       
+       }
+          
+
+    public static void main(String args[]) {
+        Example1 ex = new Example1();
+        ex.setVisible(true);
+    }
+}
